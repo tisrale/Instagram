@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public String photoFileName = "photo.jpg";
     private File photoFile;
+    private Button btnLogout;
 
 
     @Override
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
+        btnLogout = findViewById(R.id.btnLogout);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +73,24 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                goLoginActivity();
+            }
+        });
     }
+
+    private void goLoginActivity() {
+        Log.d(TAG, "Navigating to Login Acitivity");
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -148,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void queryPosts(){
         ParseQuery<Post> postQuery = new ParseQuery<Post>(Post.class);

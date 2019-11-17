@@ -47,4 +47,16 @@
         android:layout_marginBottom="161dp"
         android:text="Submit" />
 
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSignup"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="278dp"
+        android:layout_marginBottom="63dp"
+        android:background="#E45326"
+        android:text="Log out" />
+
 </RelativeLayout>
